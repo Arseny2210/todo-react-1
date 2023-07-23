@@ -1,14 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-const AddItem = () => {
+const AddItem = ({onAdd}) => {
+  const [value, setValue] = useState('');
   return (
-    <form className="item-add-form d-flex">
+    <div className="item-add-form d-flex">
           <input
+            onChange={(e) => setValue(e.target.value)}
+            id='addTitle'
             type="text"
             className="form-control"
             placeholder="What needs to be done"
-          /><button className="btn btn-outline-secondary col-3">Add Item</button>
-        </form>
+            value={value}
+          /><button onClick={() => {onAdd(value); setValue('')}} className="btn btn-outline-secondary col-3">Add Item</button>
+        </div>
   )
 }
 
